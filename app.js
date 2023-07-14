@@ -6,6 +6,7 @@ import morgan from "morgan";
 import router from "./router/app.route";
 import userRouter from "./router/user.route";
 import categoryRouter from "./router/category.route";
+import expenseRouter from "./router/expense.route";
 
 dotenv.config();
 
@@ -19,5 +20,6 @@ app.use(urlencoded({ extended: true }));
 app.use("/", router);
 app.use("/user", userRouter);
 app.use("/category", categoryRouter);
+app.use("/expense", expenseRouter);
 
 export default app;
