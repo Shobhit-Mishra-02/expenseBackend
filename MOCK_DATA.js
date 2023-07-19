@@ -1,4 +1,4 @@
-const mockData = [
+[
   {
     date: "7/14/2022",
     amount: 8864.5,

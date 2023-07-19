@@ -2,9 +2,9 @@ import Expense from "../../lib/schema/Expense.schema";
 
 const getExpense = async (req, res) => {
   if (req.method === "GET") {
-    const { id } = req.params;
+    const { email } = req.params;
     try {
-      const expenses = await Expense.find({ userId: id });
+      const expenses = await Expense.find({ userEmail: email }).exec();
 
       res.status(200).json({
         status: "success",
