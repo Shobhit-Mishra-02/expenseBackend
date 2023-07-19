@@ -7,6 +7,7 @@ import router from "./router/app.route";
 import userRouter from "./router/user.route";
 import categoryRouter from "./router/category.route";
 import expenseRouter from "./router/expense.route";
+import paymentMethodRouter from "./router/paymentMethod.route";
 
 dotenv.config();
 
@@ -21,5 +22,6 @@ app.use("/", router);
 app.use("/user", userRouter);
 app.use("/category", categoryRouter);
 app.use("/expense", expenseRouter);
+app.use("/paymentMethod", paymentMethodRouter);
 
 export default app;
