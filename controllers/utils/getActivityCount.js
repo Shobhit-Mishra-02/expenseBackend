@@ -27,6 +27,9 @@ const getActivityCount = async (req, res) => {
             date: 1,
           },
         },
+        {
+          $limit: 10,
+        },
       ]).exec();
 
       res.status(200).json({

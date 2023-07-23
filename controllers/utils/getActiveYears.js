@@ -1,26 +1,32 @@
 import Expense from "../../lib/schema/Expense.schema";
 
-const getCategoryDistribution = async (req, res) => {
+const getActiveYears = async (req, res) => {
   if (req.method === "GET") {
     try {
-      const categoryCount = await Expense.aggregate([
+      const activeYears = await Expense.aggregate([
+        {
+          $addFields: {
+            year: { $year: "$date" },
+          },
+        },
         {
           $group: {
-            _id: "$category",
-            count: { $sum: 1 },
-            totalAmount: { $sum: "$amount" },
+            _id: "$year",
           },
         },
         {
           $addFields: {
-            category: "$_id",
+            year: "$_id",
           },
+        },
+        {
+          $sort: { year: 1 },
         },
       ]).exec();
 
       res.status(200).json({
         status: "success",
-        categoryCount,
+        activeYears,
       });
     } catch (error) {
       res.status(500).json({
@@ -36,4 +42,4 @@ const getCategoryDistribution = async (req, res) => {
   }
 };
 
-export default getCategoryDistribution;
+export default getActiveYears;
